@@ -11,12 +11,21 @@ const moviesApi = createApi({
   endpoints: (builder) => {
     return {
       getMovies: builder.query({
-        query: ({ page }) =>
-          `/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`,
+        query: ({ page, searchQuery }) => {
+          if (searchQuery !== '') {
+            return {
+              url: `/search/movie?query=${searchQuery}&page=${page}&api_key=${API_KEY}`,
+            };
+          }
+
+          return {
+            url: `/movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`,
+          };
+        },
       }),
 
       getMoviesDetails: builder.query({
-        query: ({id}) =>
+        query: ({ id }) =>
           `/movie/${id}?append_to_response=videos,credits&api_key=${API_KEY}`,
       }),
     };
