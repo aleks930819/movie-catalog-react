@@ -55,7 +55,7 @@ const Sidebar = ({ isOpen }) => {
                   href="#"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-cyan-600"
                 >
-                  <span className="flex-1 ml-3 whitespace-nowrap lg:text-2xl">
+                  <span className="flex-1 ml-3 whitespace-nowrap lg:text-lg">
                     {label}
                   </span>
                 </Link>
@@ -70,7 +70,7 @@ const Sidebar = ({ isOpen }) => {
                   href="#"
                   className="flex items-center p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg  dark:hover:bg-cyan-600 dark:text-white group"
                 >
-                  <span className="ml-3 lg:text-xl">{label}</span>
+                  <span className="ml-3 lg:text-lg">{label}</span>
                 </Link>
               </li>
             ))}

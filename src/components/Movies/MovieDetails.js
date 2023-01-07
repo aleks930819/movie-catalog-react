@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { useGetMoviesDetailsQuery } from '../../store';
 import {
   FaStar,
@@ -11,6 +11,9 @@ import {
 import { BiWorld } from 'react-icons/bi';
 
 import Button from '../Button/Button';
+import Modal from '../Modal/Modal';
+import Trailer from '../Trailer/Trailer';
+import { useState } from 'react';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -24,6 +27,16 @@ const MovieDetails = () => {
   const isInWatchedList = true;
   const isInFavoriteList = false;
   const navigate = useNavigate();
+  const [isTrailerOpen, setIsTrailerOpen] = useState(false);
+
+  const openTrailerHandler = () => {
+    setIsTrailerOpen(true);
+  };
+
+  const closeTrailerHandler = () => {
+    setIsTrailerOpen(false);
+  };
+  console.log(movieDetails);
 
   return (
     <div className="flex flex-col md:grid md:grid-cols-2 md:w-3/5 shadow-2xl justify-center items-center  content-center mx-auto mt-10 mb-10 w-5/6 pb-5 rounded-3xl overflow-hidden ">
@@ -35,7 +48,7 @@ const MovieDetails = () => {
         />
       </div>
 
-      <div className="container flex flex-col gap-5 md:gap-12 p-5 text-base xl:text-2xl justify-center items-center content-center">
+      <div className="container flex flex-col gap-5 md:gap-12 p-5 text-base  justify-center items-center content-center">
         <div>
           <h2 className="font-extrabold">{movieDetails?.title}</h2>
         </div>
@@ -59,12 +72,16 @@ const MovieDetails = () => {
           <p>{movieDetails?.overview}</p>
         </div>
         <div className="grid sm:grid-cols-2 gap-2">
-          <Button primary>
+          <Button primary onClick={openTrailerHandler}>
             Trailer <FaYoutube />
           </Button>
-          <Button outline>
-            Website <BiWorld className="text-cyan-900" />
-          </Button>
+
+          <a target="_blank" rel="noreferrer" href={movieDetails?.homepage}>
+            <Button outline className="w-full">
+              Website <BiWorld className="text-cyan-900" />
+            </Button>
+          </a>
+
           <Button outline>
             Watchlist
             {isInWatchedList ? (
@@ -87,7 +104,7 @@ const MovieDetails = () => {
         </Button>
       </div>
 
-      <div className="md:col-start-1 col-end-2 p-5  lg:text-2xl :text-2xl">
+      <div className="md:col-start-1 col-end-2 p-5  text-base ">
         <h3 className="text-center">Cast:</h3>
         <div className="grid grid-cols-4 mt-6 mb-6 gap-2 md:grid-cols-7">
           {movieDetails?.credits?.cast.slice(0, 7).map((actor) => (
@@ -100,6 +117,12 @@ const MovieDetails = () => {
           ))}
         </div>
       </div>
+      {isTrailerOpen && (
+        <Trailer
+          link={movieDetails?.videos?.results[0]?.key}
+          closeTrailerHandler={closeTrailerHandler}
+        />
+      )}
     </div>
   );
 };
