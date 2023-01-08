@@ -1,4 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { FaArrowLeft } from 'react-icons/fa';
+
 import {
   useGetMoviesDetailsQuery,
   useGetRecommendationsQuery,
@@ -115,27 +117,30 @@ const MovieDetails = () => {
               )}{' '}
             </Button>
           </div>
-          <Button primary rounded onClick={() => navigate(-1)}>
-            Go Back
-          </Button>
+          <div className='lg:self-start'>
+            <Button primary onClick={() => navigate(-1)}>
+              <FaArrowLeft className="mr-3" />
+              Back
+            </Button>
+          </div>
         </div>
 
         <div className="md:col-start-1 col-end-2 p-5  text-base ">
           <h3 className="text-center">Cast:</h3>
           <div className="grid grid-cols-4 mt-6 mb-6 gap-2 md:grid-cols-7">
-            {movieDetails?.credits?.cast
-              .slice(0, 7)
-              .map(
-                (actor) =>
-                  actor.profile_path && (
+            {movieDetails?.credits?.cast.slice(0, 7).map(
+              (actor) =>
+                actor.profile_path && (
+                  <Link to={`/actors/${actor.id}`}>
                     <img
                       key={actor.id}
                       src={`https://image.tmdb.org/t/p/w780/${actor.profile_path}`}
                       alt={actor.name}
                       className="rounded-full w-16 md:w-24 cursor-pointer"
                     />
-                  )
-              )}
+                  </Link>
+                )
+            )}
           </div>
         </div>
 
@@ -147,7 +152,7 @@ const MovieDetails = () => {
         )}
       </div>
 
-      <div className="flex flex-col justify-center items-center text-center mt-5 mb-10 text-lg">
+      <div className="flex flex-col justify-center items-center text-center mt-5 mb-10 text-lg sm:text-3xl">
         <h2>You might also like:</h2>
         <MovieCard data={recomendations} />
       </div>

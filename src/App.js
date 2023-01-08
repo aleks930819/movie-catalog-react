@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import Actors from './components/Actors/Actors';
 import Home from './components/Home/Home';
 import MovieDetails from './components/Movies/MovieDetails';
 import NavBar from './components/Navbar/NavBar';
@@ -12,6 +13,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/actors/:id" element={<Actors />} />
       </Routes>
     </>
   );

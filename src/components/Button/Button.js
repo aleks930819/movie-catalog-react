@@ -7,6 +7,7 @@ const Button = ({
   success,
   danger,
   warning,
+  yellow,
   outline,
   rounded,
   dark,
@@ -20,6 +21,8 @@ const Button = ({
       'border-blue-500 bg-cyan-900 p-5 text-white hover:bg-cyan-700 transition': primary,
       'border-green-500 bg-green-500 text-white': success,
       'border-yellow-400 bg-yellow-400 text-white': warning,
+      'border-yellow-400 bg-yellow-400 text-dark': yellow,
+
       'border-red-500 bg-red-500 text-white': danger,
       'rounded-full': rounded,
       'bg-white': outline,

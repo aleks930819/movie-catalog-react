@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { moviesApi } from './apis/moviesApi';
 import { setupListeners } from '@reduxjs/toolkit/query';
-import searchMovieReducer from '../components/features/searchMovie';
-import genreOrCategoryReducer from '../components/features/currentGenreOrCategory';
+import searchMovieReducer from '../features/searchMovie';
+import genreOrCategoryReducer from '../features/currentGenreOrCategory';
 
 export const store = configureStore({
   reducer: {
@@ -22,4 +22,6 @@ export {
   useGetMoviesDetailsQuery,
   useGetGenresQuery,
   useGetRecommendationsQuery,
+  useGetActorDetailsByIdQuery,
+  useGetMoviesByActorIdQuery,
 } from './apis/moviesApi';

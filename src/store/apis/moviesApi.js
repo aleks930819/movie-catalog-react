@@ -62,6 +62,22 @@ const moviesApi = createApi({
           };
         },
       }),
+
+      getActorDetailsById: builder.query({
+        query: ({ id }) => {
+          return {
+            url: `/person/${id}?api_key=${API_KEY}`,
+          };
+        },
+      }),
+
+      getMoviesByActorId: builder.query({
+        query: ({ id, page }) => {
+          return {
+            url: `/discover/movie?with_cast=${id}&page=${page}&api_key=${API_KEY}`,
+          };
+        },
+      }),
     };
   },
 });
@@ -71,5 +87,7 @@ export const {
   useGetMoviesDetailsQuery,
   useGetGenresQuery,
   useGetRecommendationsQuery,
+  useGetActorDetailsByIdQuery,
+  useGetMoviesByActorIdQuery,
 } = moviesApi;
 export { moviesApi };

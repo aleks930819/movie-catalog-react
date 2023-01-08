@@ -1,9 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetGenresQuery } from '../../store';
-import { selectGenreOrCategory } from '../features/currentGenreOrCategory';
+import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
 import Movies from '../Movies/Movies';
-
 
 const Sidebar = ({ isOpen }) => {
   const { data: genres } = useGetGenresQuery();
@@ -52,8 +51,8 @@ const Sidebar = ({ isOpen }) => {
   // ];
 
   return (
-    <div className='flex'>
-     {/* <div className={isOpen ? 'inline-flex' : 'hidden'}> */}
+    <div className="flex">
+      {/* <div className={isOpen ? 'inline-flex' : 'hidden'}> */}
       <aside className="w-64  inline-flex" aria-label="Sidebar">
         <div className="px-3 py-4 overflow-y-auto  bg-cyan-900">
           <ul className="space-y-2 ">
@@ -88,7 +87,7 @@ const Sidebar = ({ isOpen }) => {
         </div>
       </aside>
       {/* </div> */}
-   </div>
+    </div>
   );
 };
 

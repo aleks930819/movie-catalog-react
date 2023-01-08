@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { findMovie } from '../features/searchMovie';
+import { findMovie } from '../../features/searchMovie';
 
 const Search = () => {
   const [query, setQuery] = useState('');
