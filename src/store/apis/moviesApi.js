@@ -28,9 +28,30 @@ const moviesApi = createApi({
         query: ({ id }) =>
           `/movie/${id}?append_to_response=videos,credits&api_key=${API_KEY}`,
       }),
+
+      getGenres: builder.query({
+        query: () => {
+          return {
+            url: `/genre/movie/list?api_key=${API_KEY}&language=en-US`,
+          };
+        },
+      }),
+
+      getRecommendations: builder.query({
+        query: ({ movie_id, list }) => {
+          return {
+            url: `/movie/${movie_id}/${list}?api_key=${API_KEY}`,
+          };
+        },
+      }),
     };
   },
 });
 
-export const { useGetMoviesQuery, useGetMoviesDetailsQuery } = moviesApi;
+export const {
+  useGetMoviesQuery,
+  useGetMoviesDetailsQuery,
+  useGetGenresQuery,
+  useGetRecommendationsQuery,
+} = moviesApi;
 export { moviesApi };

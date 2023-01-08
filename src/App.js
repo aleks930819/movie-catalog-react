@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
+import Home from './components/Home/Home';
 import MovieDetails from './components/Movies/MovieDetails';
-import Movies from './components/Movies/Movies';
 import NavBar from './components/Navbar/NavBar';
 import ScrollToTop from './utils/scrollToTop';
 
@@ -10,7 +10,7 @@ function App() {
       <NavBar />
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Movies />} />
+        <Route path="/" element={<Home />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
       </Routes>
     </>

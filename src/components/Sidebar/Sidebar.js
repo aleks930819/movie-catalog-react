@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useGetGenresQuery } from '../../store';
+import Movies from '../Movies/Movies';
 
 const Sidebar = ({ isOpen }) => {
-    
+  const { data: genres } = useGetGenresQuery();
+
   const categories = [
     {
       label: 'Popular',
@@ -18,35 +21,35 @@ const Sidebar = ({ isOpen }) => {
     },
   ];
 
-  const genres = [
-    {
-      label: 'Comedy',
-      value: 'comedy',
-    },
-    {
-      label: 'Action',
-      value: 'action',
-    },
+  //   {
+  //     label: 'Comedy',
+  //     value: 'comedy',
+  //   },
+  //   {
+  //     label: 'Action',
+  //     value: 'action',
+  //   },
 
-    {
-      label: 'Horror',
-      value: 'horror',
-    },
+  //   {
+  //     label: 'Horror',
+  //     value: 'horror',
+  //   },
 
-    {
-      label: 'Drama',
-      value: 'drama',
-    },
+  //   {
+  //     label: 'Drama',
+  //     value: 'drama',
+  //   },
 
-    {
-      label: 'Sci-fi',
-      value: 'sci-fi',
-    },
-  ];
+  //   {
+  //     label: 'Sci-fi',
+  //     value: 'sci-fi',
+  //   },
+  // ];
 
   return (
-    <div className={isOpen ? 'block' : 'hidden'}>
-      <aside className="w-64 lg:block" aria-label="Sidebar">
+    <div className='flex'>
+     {/* <div className={isOpen ? 'inline-flex' : 'hidden'}> */}
+      <aside className="w-64  inline-flex" aria-label="Sidebar">
         <div className="px-3 py-4 overflow-y-auto  bg-cyan-900">
           <ul className="space-y-2 ">
             {categories?.map(({ label, value }) => (
@@ -64,20 +67,21 @@ const Sidebar = ({ isOpen }) => {
           </ul>
 
           <ul className="pt-4 mt-4 space-y-2 border-t  border-gray-200 dark:border-gray-900">
-            {genres?.map(({ label, value }) => (
-              <li key={label}>
+            {genres?.genres?.map(({ name, id }) => (
+              <li key={name}>
                 <Link
                   href="#"
                   className="flex items-center p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg  dark:hover:bg-cyan-600 dark:text-white group"
                 >
-                  <span className="ml-3 lg:text-lg">{label}</span>
+                  <span className="ml-3 lg:text-lg">{name}</span>
                 </Link>
               </li>
             ))}
           </ul>
         </div>
       </aside>
-    </div>
+      {/* </div> */}
+   </div>
   );
 };
 

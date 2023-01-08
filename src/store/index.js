@@ -15,4 +15,9 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export { useGetMoviesQuery, useGetMoviesDetailsQuery } from './apis/moviesApi';
+export {
+  useGetMoviesQuery,
+  useGetMoviesDetailsQuery,
+  useGetGenresQuery,
+  useGetRecommendationsQuery,
+} from './apis/moviesApi';

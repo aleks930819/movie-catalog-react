@@ -40,7 +40,7 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      <Sidebar isOpen={isOpen} />
+      {/* <Sidebar isOpen={isOpen} /> */}
     </>
   );
 };
