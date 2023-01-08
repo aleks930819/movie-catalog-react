@@ -1,21 +1,20 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { findMovie } from '../../features/searchMovie';
+import { searchMovie } from '../../features/currentGenreOrCategory';
+import { handlePage } from '../../features/currentPage';
 
 const Search = () => {
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  console.log(query);
 
   const submitHandler = (ev) => {
     ev.preventDefault();
-    if (query === '') {
-      return;
-    }
-    dispatch(findMovie(query));
+
+    dispatch(handlePage('first'));
+    dispatch(searchMovie(query));
     setQuery('');
     navigate('/');
   };

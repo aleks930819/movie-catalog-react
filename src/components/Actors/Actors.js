@@ -1,5 +1,5 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { FaArrowLeft } from "react-icons/fa";
+import { FaArrowLeft } from 'react-icons/fa';
 import {
   useGetActorDetailsByIdQuery,
   useGetMoviesByActorIdQuery,
@@ -31,12 +31,13 @@ const Actors = () => {
 
           <div className="text-ellipsis mh-9">
             <p className="h-72 overflow-ellipsis   overflow-hidden text-start">
-              {data?.biography}
+              {data?.biography ? data?.biography : 'There is not biography yet'}
             </p>
           </div>
           <div className=" flex flex-col-reverse sm:flex-row gap-2 justify-center items-center col-start-2">
             <Button primary onClick={() => navigate(-1)}>
-              <FaArrowLeft className='mr-3'/>Back 
+              <FaArrowLeft className="mr-3" />
+              Back
             </Button>
             <a
               target="_blank"
@@ -53,7 +54,7 @@ const Actors = () => {
 
       <div className="flex flex-col text-center">
         <h2 className="text-xl sm:text-3xl">Movies: </h2>
-        <MovieCard data={actorMovie} />
+        <MovieCard data={actorMovie?.results} />
       </div>
     </>
   );

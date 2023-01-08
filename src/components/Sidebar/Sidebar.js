@@ -2,11 +2,16 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetGenresQuery } from '../../store';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
-import Movies from '../Movies/Movies';
+import { handlePage } from '../../features/currentPage';
+import ScrollToTop from '../../utils/scrollToTop';
+import { useContext } from 'react';
+import { isOpenContext } from '../../contexts/isOpenContext';
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = () => {
   const { data: genres } = useGetGenresQuery();
 
+  const isOpen = true;
+  const { open, isOpenClickHandler } = useContext(isOpenContext);
   const dispatch = useDispatch();
 
   const categories = [
@@ -25,37 +30,17 @@ const Sidebar = ({ isOpen }) => {
     },
   ];
 
-  //   {
-  //     label: 'Comedy',
-  //     value: 'comedy',
-  //   },
-  //   {
-  //     label: 'Action',
-  //     value: 'action',
-  //   },
-
-  //   {
-  //     label: 'Horror',
-  //     value: 'horror',
-  //   },
-
-  //   {
-  //     label: 'Drama',
-  //     value: 'drama',
-  //   },
-
-  //   {
-  //     label: 'Sci-fi',
-  //     value: 'sci-fi',
-  //   },
-  // ];
+  console.log(open);
 
   return (
     <div className="flex">
       {/* <div className={isOpen ? 'inline-flex' : 'hidden'}> */}
       <aside className="w-64  inline-flex" aria-label="Sidebar">
         <div className="px-3 py-4 overflow-y-auto  bg-cyan-900">
-          <ul className="space-y-2 ">
+          <ul
+            className="space-y-2"
+            onClick={() => dispatch(handlePage('first'))}
+          >
             {categories?.map(({ label, value }) => (
               <li key={label}>
                 <Link
@@ -71,7 +56,10 @@ const Sidebar = ({ isOpen }) => {
             ))}
           </ul>
 
-          <ul className="pt-4 mt-4 space-y-2 border-t  border-gray-200 dark:border-gray-900">
+          <ul
+            className="pt-4 mt-4 space-y-2 border-t  border-gray-200 dark:border-gray-900"
+            onClick={() => dispatch(handlePage('first'))}
+          >
             {genres?.genres?.map(({ name, id }) => (
               <li key={name}>
                 <Link
