@@ -1,9 +1,14 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetGenresQuery } from '../../store';
+import { selectGenreOrCategory } from '../features/currentGenreOrCategory';
 import Movies from '../Movies/Movies';
+
 
 const Sidebar = ({ isOpen }) => {
   const { data: genres } = useGetGenresQuery();
+
+  const dispatch = useDispatch();
 
   const categories = [
     {
@@ -57,6 +62,7 @@ const Sidebar = ({ isOpen }) => {
                 <Link
                   href="#"
                   className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white dark:hover:bg-cyan-600"
+                  onClick={() => dispatch(selectGenreOrCategory(value))}
                 >
                   <span className="flex-1 ml-3 whitespace-nowrap lg:text-lg">
                     {label}
@@ -71,6 +77,7 @@ const Sidebar = ({ isOpen }) => {
               <li key={name}>
                 <Link
                   href="#"
+                  onClick={() => dispatch(selectGenreOrCategory(id))}
                   className="flex items-center p-2 text-base font-normal text-gray-900 transition duration-75 rounded-lg  dark:hover:bg-cyan-600 dark:text-white group"
                 >
                   <span className="ml-3 lg:text-lg">{name}</span>

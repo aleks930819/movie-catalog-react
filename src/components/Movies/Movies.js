@@ -5,11 +5,16 @@ const Movies = () => {
   const page = 1;
 
   const { searchQuery } = useSelector((state) => state.searchMovie);
+  const { genreIdOrCategoryName } = useSelector(
+    (state) => state.genreOrCategory
+  );
+
+
   const {
     data: movieData,
     error,
     isLoading,
-  } = useGetMoviesQuery({ page, searchQuery });
+  } = useGetMoviesQuery({ page, searchQuery, genreIdOrCategoryName });
 
   return <MovieCard data={movieData} />;
 };

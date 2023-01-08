@@ -11,10 +11,28 @@ const moviesApi = createApi({
   endpoints: (builder) => {
     return {
       getMovies: builder.query({
-        query: ({ page, searchQuery }) => {
+        query: ({ page, searchQuery, genreIdOrCategoryName }) => {
           if (searchQuery !== '') {
             return {
               url: `/search/movie?query=${searchQuery}&page=${page}&api_key=${API_KEY}`,
+            };
+          }
+
+          if (
+            genreIdOrCategoryName &&
+            typeof genreIdOrCategoryName === 'string'
+          ) {
+            return {
+              url: `/movie/${genreIdOrCategoryName}?api_key=${API_KEY}&language=en-US&page=${page}`,
+            };
+          }
+
+          if (
+            genreIdOrCategoryName &&
+            typeof genreIdOrCategoryName === 'number'
+          ) {
+            return {
+              url: `discover/movie?api_key=${API_KEY}&with_genres=${genreIdOrCategoryName}&page=${page}`,
             };
           }
 

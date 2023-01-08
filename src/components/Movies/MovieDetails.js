@@ -62,7 +62,7 @@ const MovieDetails = () => {
 
         <div className="container flex flex-col gap-5 md:gap-12 p-5 text-base  justify-center items-center content-center">
           <div>
-            <h2 className="font-extrabold">{movieDetails?.title}</h2>
+            <h2 className="font-extrabold lg:text-xl">{movieDetails?.title}</h2>
           </div>
 
           <div className="flex gap-5">
