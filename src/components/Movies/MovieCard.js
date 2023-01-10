@@ -10,7 +10,11 @@ const MovieCard = ({ data }) => {
             <Link to={`/movie/${movie.id}`}>
               <img
                 className="w-full shadow-2xl z-10 sm:w-full   rounded-md  cursor-pointer lg:hover:scale-110 lg:hover:grayscale lg:hover:z-40 transition ease-in-out delay-250"
-                src={`${imgPath}/${movie?.poster_path}`}
+                src={
+                  movie.poster_path
+                    ? `${imgPath}/${movie?.poster_path}`
+                    : `${imgPath}/${movie?.backdrop_path}`
+                }
                 alt={movie?.title}
               />
             </Link>

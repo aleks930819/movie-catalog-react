@@ -1,5 +1,6 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+import { FaArrowLeft,  FaImdb,} from 'react-icons/fa';
+import { SiImdb} from 'react-icons/si';
 import {
   useGetActorDetailsByIdQuery,
   useGetMoviesByActorIdQuery,
@@ -14,7 +15,6 @@ const Actors = () => {
   const { data: actorMovie } = useGetMoviesByActorIdQuery({ id, page });
 
   const navigate = useNavigate();
-  console.log(actorMovie);
   return (
     <>
       <div className="grid grid-cols-2 text-xs lg:text-sm p-5 gap-5 justify-center text-center text-md mt-10  mb-10 items-center content-center w-auto mx-auto md:w-3/6 shadow-2xl h">
@@ -45,7 +45,7 @@ const Actors = () => {
               href={`https://www.imdb.com/name/${data?.imdb_id}`}
             >
               <Button yellow className="w-full text-center">
-                IMDB
+                IMDB <SiImdb className='ml-2'/>
               </Button>
             </a>
           </div>

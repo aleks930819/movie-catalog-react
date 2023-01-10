@@ -16,3 +16,8 @@ code {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.sidebar-container {
+  @apply h-full w-[20rem] p-4 border transition-all duration-500 border-solid border-cyan-900 bg-cyan-900 
+}

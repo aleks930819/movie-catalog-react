@@ -25,14 +25,12 @@ function App() {
           draggable
           pauseOnHover
           theme="dark"
-         
         />
         <NavBar />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/my-movies" element={<MyMovies />} />
-
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/actors/:id" element={<Actors />} />
         </Routes>

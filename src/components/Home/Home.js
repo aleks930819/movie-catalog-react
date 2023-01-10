@@ -5,10 +5,10 @@ import Sidebar from '../Sidebar/Sidebar';
 
 const Home = () => {
   const { open } = useContext(isOpenContext);
-  console.log(open);
+
   return (
-    <div className="flex">
-      <Sidebar />
+    <div className="flex flex-col md:flex-row">
+      {open ? <Sidebar /> : ''}
 
       <Movies />
     </div>

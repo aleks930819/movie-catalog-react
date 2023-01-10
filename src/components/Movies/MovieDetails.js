@@ -16,23 +16,18 @@ import {
 import { BiWorld } from 'react-icons/bi';
 
 import Button from '../Button/Button';
-import Modal from '../Modal/Modal';
 import Trailer from '../Trailer/Trailer';
-import { useEffect, useState } from 'react';
-import Movies from './Movies';
+import { useState } from 'react';
 import MovieCard from './MovieCard';
-import Pagination from '../Pagination/Pagination';
 import Spinner from '../Spinner/Spinner';
 import addToLocalStorage from '../../utils/addToLocalStorage';
-import getItemFromLocalStorage from '../../utils/getItemFromLocalStorage';
 import removeFromLocalStorage from '../../utils/removeFromLocalStorage';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Cast from '../Cast/Cast';
+import useInFavoriteOrInWatchList from '../../hooks/useInFavoriteOrInWatchList';
 
 const MovieDetails = () => {
-  const [isInFavorited, setIsInFavorited] = useState(false);
-  const [isInWatchedList, setIsInWatchedList] = useState(false);
-
   const { id } = useParams();
   const {
     data: movieDetails,
@@ -58,35 +53,19 @@ const MovieDetails = () => {
     setIsTrailerOpen(false);
   };
 
-  useEffect(() => {
-    const favorites = getItemFromLocalStorage('favorite');
-    const watchList = getItemFromLocalStorage('watchlist');
-
-    const isInFavorite = favorites?.some(
-      (item) => item.id === movieDetails?.id
-    );
-    const isInWatchList = watchList?.some(
-      (item) => item.id === movieDetails?.id
-    );
-
-    setIsInFavorited(isInFavorite);
-    setIsInWatchedList(isInWatchList);
-  }, [movieDetails]);
+  const {
+    isInFavorited,
+    isInWatchedList,
+    setIsInFavorited,
+    setIsInWatchedList,
+  } = useInFavoriteOrInWatchList(movieDetails);
 
   const watchListNotify = () => {
-    let message = '';
-    isInWatchedList
-      ? (message = 'Removed from watch list')
-      : (message = 'Added to watch list');
-    toast(message);
+    toast(isInWatchedList ? 'Removed from watch list' : 'Added to watch list');
   };
 
   const favoriteNotify = () => {
-    let message = '';
-    isInFavorited
-      ? (message = 'Removed from favorites')
-      : (message = 'Added to favorites list');
-    toast(message);
+    toast(isInFavorited ? 'Removed from favorites' : 'Added to favorites list');
   };
 
   return (
@@ -131,7 +110,7 @@ const MovieDetails = () => {
                 </p>
               </div>
               <div className="pl-2 pr-2">
-                <p>{movieDetails?.overview}</p>
+                <p className="text-md">{movieDetails?.overview}</p>
               </div>
               <div className="grid sm:grid-cols-2 gap-2">
                 <Button primary onClick={openTrailerHandler}>
@@ -193,22 +172,8 @@ const MovieDetails = () => {
             </div>
 
             <div className="md:col-start-1 col-end-2 p-5  text-base ">
-              <h3 className="text-center">Cast:</h3>
-              <div className="grid grid-cols-4 mt-6 mb-6 gap-2 md:grid-cols-7">
-                {movieDetails?.credits?.cast.slice(0, 7).map(
-                  (actor) =>
-                    actor.profile_path && (
-                      <Link to={`/actors/${actor.id}`}>
-                        <img
-                          key={actor.id}
-                          src={`https://image.tmdb.org/t/p/w780/${actor.profile_path}`}
-                          alt={actor.name}
-                          className="rounded-full w-16 md:w-24 cursor-pointer"
-                        />
-                      </Link>
-                    )
-                )}
-              </div>
+              <h3 className="text-center">Top Cast:</h3>
+              <Cast movieDetails={movieDetails} />
             </div>
 
             {isTrailerOpen && (
