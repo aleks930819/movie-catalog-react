@@ -9,6 +9,7 @@ import NavBar from './components/Navbar/NavBar';
 import ScrollToTop from './utils/scrollToTop';
 import { IsOpenProvider } from './contexts/isOpenContext';
 import MyMovies from './components/MyMovies/MyMovies';
+import PageNotFound from './components/PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
           <Route path="/my-movies" element={<MyMovies />} />
           <Route path="/movie/:id" element={<MovieDetails />} />
           <Route path="/actors/:id" element={<Actors />} />
+          <Route path="*" element={<PageNotFound />} />;
         </Routes>
       </IsOpenProvider>
     </>

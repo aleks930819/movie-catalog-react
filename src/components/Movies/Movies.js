@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetMoviesQuery } from '../../store';
-import ScrollToTop from '../../utils/scrollToTop';
 import Pagination from '../Pagination/Pagination';
 import Spinner from '../Spinner/Spinner';
 import MovieCard from './MovieCard';
@@ -24,17 +23,6 @@ const Movies = () => {
     genreIdOrCategoryName,
   });
   const imgPath = 'https://image.tmdb.org/t/p/w500';
-  let img;
-
-  console.log(movieData?.results[0].backdrop_path);
-
-  if (movieData?.results[0].backdrop_path === null) {
-    img = movieData?.results[0].poster_path;
-  } else {
-    img = movieData?.results[0].backdrop_path;
-  }
-
-  console.log(img);
 
   return (
     <>

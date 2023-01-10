@@ -6,7 +6,7 @@ const Cast = ({ movieDetails }) => {
       {movieDetails?.credits?.cast.slice(0, 7).map(
         (actor) =>
           actor.profile_path && (
-            <Link title={actor.name} to={`/actors/${actor.id}`}>
+            <Link  key={actor.id} title={actor.name} to={`/actors/${actor.id}`}>
               <img
                 key={actor.id}
                 src={`https://image.tmdb.org/t/p/w780/${actor.profile_path}`}

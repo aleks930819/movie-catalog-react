@@ -160,7 +160,7 @@ const MovieDetails = () => {
                     <FaHeart className="ml-5 text-purple-700" />
                   ) : (
                     <FaRegHeart className="ml-5 text-cyan-900" />
-                  )}{' '}
+                  )}
                 </Button>
               </div>
               <div className="lg:self-start">
@@ -184,7 +184,7 @@ const MovieDetails = () => {
             )}
           </div>
 
-          <div className="flex flex-col justify-center items-center text-center mt-5 mb-10 text-lg sm:text-3xl">
+          <div className="flex flex-col justify-center items-center text-center mt-5 mb-10 text-lg sm:text-2xl">
             <h2>You might also like:</h2>
 
             <MovieCard data={recomendations?.results} />

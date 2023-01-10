@@ -12,13 +12,11 @@ const Trailer = ({ link, closeTrailerHandler }) => {
       <Modal>
         <div className="flex justify-center items-center mt-20 relative w-full ">
           <iframe
-            autoPlay
-            height="600px"
-            width="900px"
             frameBorder="0"
             title="Trailer"
+            allowFullScreen
             src={`https://www.youtube.com/embed/${link}`}
-            allow="autoplay"
+            className="aspect-video w-full lg:h-[600px] lg:w-[900px]"
           />
         </div>
       </Modal>

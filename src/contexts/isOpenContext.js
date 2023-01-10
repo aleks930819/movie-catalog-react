@@ -5,14 +5,21 @@ export const isOpenContext = createContext();
 export const IsOpenProvider = ({ children }) => {
   const [open, setOpen] = useState(false);
 
-  const isOpenClickHandler = () => {
+  const toggle = () => {
     setOpen(!open);
   };
 
+  const hide = () => {
+    setOpen(false);
+  };
+
+  const show = () => {
+    setOpen(true);
+  };
+
   return (
-    <isOpenContext.Provider value={{ open, isOpenClickHandler }}>
+    <isOpenContext.Provider value={{ open, toggle, hide, show }}>
       {children}
     </isOpenContext.Provider>
   );
 };
-

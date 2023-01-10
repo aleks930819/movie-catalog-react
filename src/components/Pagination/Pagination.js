@@ -1,9 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { handlePage } from '../../features/currentPage';
-import { useGetMoviesQuery } from '../../store';
 import Button from '../Button/Button';
 
-const Pagination = ({  totalPages }) => {
+const Pagination = ({ totalPages }) => {
   const dispatch = useDispatch();
   const { pageNumber } = useSelector((state) => state.page);
 
