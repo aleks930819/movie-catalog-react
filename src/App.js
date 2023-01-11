@@ -10,6 +10,7 @@ import ScrollToTop from './utils/scrollToTop';
 import { IsOpenProvider } from './contexts/isOpenContext';
 import MyMovies from './components/MyMovies/MyMovies';
 import PageNotFound from './components/PageNotFound/PageNotFound';
+import Sidebar from './components/Sidebar/Sidebar';
 
 function App() {
   return (

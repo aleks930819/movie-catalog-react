@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetMoviesQuery } from '../../store';
+import ScrollToTop from '../../utils/scrollToTop';
 import Pagination from '../Pagination/Pagination';
 import Spinner from '../Spinner/Spinner';
 import MovieCard from './MovieCard';
@@ -63,6 +64,7 @@ const Movies = () => {
               totalPages={movieData?.total_pages}
             />
             <MovieCard data={movieData?.results} />
+
             <Pagination
               currentPage={page}
               setPage={setPage}

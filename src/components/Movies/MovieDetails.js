@@ -26,6 +26,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cast from '../Cast/Cast';
 import useInFavoriteOrInWatchList from '../../hooks/useInFavoriteOrInWatchList';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -68,9 +69,15 @@ const MovieDetails = () => {
     toast(isInFavorited ? 'Removed from favorites' : 'Added to favorites list');
   };
 
+  const dateFormat = new Date(movieDetails?.release_date)
+    .toDateString()
+    .split(' ')[3];
+
   return (
     <>
-      {isLoading ? (
+      {error ? (
+        <ErrorMessage />
+      ) : isLoading ? (
         <Spinner />
       ) : (
         <>
@@ -102,11 +109,7 @@ const MovieDetails = () => {
               <div className="">
                 <p>
                   Release date:
-                  {
-                    new Date(movieDetails?.release_date)
-                      .toDateString()
-                      .split(' ')[3]
-                  }
+                  {dateFormat}
                 </p>
               </div>
               <div className="pl-2 pr-2">

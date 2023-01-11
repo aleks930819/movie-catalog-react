@@ -16,7 +16,7 @@ const Trailer = ({ link, closeTrailerHandler }) => {
             title="Trailer"
             allowFullScreen
             src={`https://www.youtube.com/embed/${link}`}
-            className="aspect-video w-full lg:h-[600px] lg:w-[900px]"
+            className="aspect-video w-full mt-10 lg:mt-0 lg:h-[600px] lg:w-[900px]"
           />
         </div>
       </Modal>
