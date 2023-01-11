@@ -1,5 +1,7 @@
 The app is using  The Movie Database (TMDB) API
 
+Link: https://meek-cranachan-8f9340.netlify.app/
+
 ### `npm start`
 
 Runs the app in the development mode.\
