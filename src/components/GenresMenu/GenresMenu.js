@@ -35,7 +35,7 @@ const GenresMenu = () => {
       {genresMenu && (
         <ul className="flex flex-col gap-2 absolute top-[20px] bg-cyan-900 w-40 pt-5 z-100 text-center text-base p-5">
           {genres?.genres?.map(({ name, id }) => (
-            <Link to='/'>
+            <Link to="/" key={id}>
               <li key={id} onClick={() => dispatch(selectGenreOrCategory(id))}>
                 {name}
               </li>

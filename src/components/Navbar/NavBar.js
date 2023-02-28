@@ -151,6 +151,7 @@ const NavBar = () => {
               })}
               <CategoreisMenu />
               <GenresMenu />
+              <Search />
             </ul>
           </div>
         </div>

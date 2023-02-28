@@ -48,7 +48,7 @@ const FavortiesSlide = () => {
         ref={favoritesRef}
       >
         {favoriteMovies.map((movie) => (
-          <Link to={`/movie/${movie?.id}`} className="ml-5">
+          <Link to={`/movie/${movie?.id}`} className="ml-5" key={movie?.id}>
             <img
               src={`${imgPath}/${movie?.poster_path}`}
               alt={movie?.title}

@@ -2,33 +2,29 @@ import { IoMdArrowDropright, IoMdArrowDropleft } from 'react-icons/io';
 
 import { Link } from 'react-router-dom';
 import { useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 
-import { selectWatchlist } from '../../features/user';
-
-const WatchlistSlide = () => {
-  const watchlistMovies = useSelector(selectWatchlist);
+const useCustomSlider = ({ data, title }) => {
   const imgPath = 'https://image.tmdb.org/t/p/w500';
-  const watchlistRef = useRef(null);
+  const dataRef = useRef(null);
   const [slideNumber, setSlideNumber] = useState(0);
 
-  const watchlistLength = watchlistMovies.length - 1;
+  const dataLength = data.length - 1;
 
   const handleClick = (direction) => {
-    let distance = watchlistRef.current.getBoundingClientRect().x;
+    let distance = dataRef.current.getBoundingClientRect().x;
 
     if (direction === 'left' && slideNumber > 0) {
       setSlideNumber(slideNumber - 1);
-      watchlistRef.current.style.transform = `translateX(${240 + distance}px)`;
-    } else if (direction === 'right' && slideNumber < watchlistLength) {
+      dataRef.current.style.transform = `translateX(${240 + distance}px)`;
+    } else if (direction === 'right' && slideNumber < dataLength) {
       setSlideNumber(slideNumber + 1);
-      watchlistRef.current.style.transform = `translateX(${-240 + distance}px)`;
+      dataRef.current.style.transform = `translateX(${-240 + distance}px)`;
     }
   };
 
   return (
     <div className="mt-[100px] relative mb-10">
-      <h2 className="text-xl  pb-5 pl-5">Watchlist:</h2>
+      <h2 className="text-xl  pb-5 pl-5">{title}</h2>
       <IoMdArrowDropleft
         className="text-3xl text-white cursor-pointer
      absolute
@@ -45,9 +41,9 @@ const WatchlistSlide = () => {
       <div
         className="flex     w-max  items-center justify-center transition-all duration-500 ease-in-out  
     "
-        ref={watchlistRef}
+        ref={dataRef}
       >
-        {watchlistMovies.map((movie) => (
+        {data.map((movie) => (
           <Link to={`/movie/${movie?.id}`} className="ml-5" key={movie?.id}>
             <img
               src={`${imgPath}/${movie?.poster_path}`}
@@ -74,4 +70,4 @@ const WatchlistSlide = () => {
   );
 };
 
-export default WatchlistSlide;
+export default useCustomSlider;

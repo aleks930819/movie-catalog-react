@@ -48,7 +48,7 @@ const CategoreisMenu = () => {
       {categoriesMenu && (
         <ul className="flex flex-col gap-2 absolute top-[20px] bg-cyan-900 w-40 pt-5 z-100 text-center text-base p-5">
           {categories?.map(({ label, value }) => (
-            <Link to="/">
+            <Link to="/" key={label}>
               <li
                 key={label}
                 onClick={() => dispatch(selectGenreOrCategory(value))}
