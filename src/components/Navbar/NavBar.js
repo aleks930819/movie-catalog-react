@@ -1,6 +1,6 @@
 import { FaUserAlt } from 'react-icons/fa';
-import { MdClose,MdArrowDropDown,MdArrowDropUp} from 'react-icons/md';
-import { AiOutlineLogout,AiFillHome } from 'react-icons/ai';
+import { MdClose, MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
+import { AiOutlineLogout, AiFillHome } from 'react-icons/ai';
 
 import { BiMenu } from 'react-icons/bi';
 import React, { useContext, useEffect, useRef, useState } from 'react';
@@ -16,12 +16,18 @@ import {
   set_watchlist,
 } from '../../features/user';
 import useGetUserData from '../../hooks/useGetUserData';
+import { useOnHoverOutside } from '../../hooks/useHoverOutside';
+import CategoreisMenu from '../CategoriesMenu/CategoreisMenu';
+import GenresMenu from '../GenresMenu/GenresMenu';
 
 const NavBar = () => {
   const { open, toggle } = useContext(isOpenContext);
   const user = useSelector(selectUser);
   const [isMobile, setIsMobile] = useState(false);
   const dispatch = useDispatch();
+
+  const categoriesRef = useRef(null);
+  const [categoriesMenu, setCategoriesMenu] = useState(false);
 
   const [windowSize, setWindowSize] = useState([
     window.innerWidth,
@@ -35,6 +41,13 @@ const NavBar = () => {
   const { watchList, favorites } = useGetUserData({
     userID: user?.uid,
   });
+
+  // const closeHoverMenu = () => {
+
+  //   setCategoriesMenu(false);
+  // };
+
+  // useOnHoverOutside(categoriesRef, closeHoverMenu);
 
   useEffect(() => {
     dispatch(set_favorites(favorites));
@@ -104,16 +117,26 @@ const NavBar = () => {
                 </Link>
               </li>
               <li className="flex flex-col items-center justify-center">
-                <div className="flex gap-2 cursor-pointer self-center">
+                <CategoreisMenu />
+                {/* <div
+                  ref={categoriesRef}
+                  className="flex gap-2 cursor-pointer self-center relative"
+                  onMouseOver={() => setCategoriesMenu(true)}
+                >
                   <p>Categories</p>
                   <MdArrowDropDown />
-                </div>
+                  {categoriesMenu && (
+                    <ul className="flex flex-col gap-2 absolute top-[20px] bg-cyan-900 w-20 pt-5 z-100 text-center text-base p-5">
+                      <li>TEST</li>
+                      <li>TEST</li>
+                      <li>TEST</li>
+                      <li>TEST</li>
+                    </ul>
+                  )}
+                </div> */}
               </li>
               <li className="flex flex-col items-center justify-center">
-                <div className="flex gap-2 cursor-pointer self-center">
-                  <p>Ganres</p>
-                  <MdArrowDropDown />
-                </div>
+                <GenresMenu />
               </li>
             </ul>
           </div>

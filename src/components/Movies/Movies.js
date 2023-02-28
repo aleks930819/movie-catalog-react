@@ -31,7 +31,7 @@ const Movies = () => {
         <Spinner />
       ) : (
         <>
-          <div className="flex flex-col mb-5 p-10">
+          <div className="flex flex-col mb-5 p-10 z-[1]">
             <div
               className="h-[500px] w-full bg-no-repeat   mb-10 relative cursor-pointer rounded-md overflow-hidden  hidden md:block "
               // style={{
