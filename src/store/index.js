@@ -3,11 +3,13 @@ import { moviesApi } from './apis/moviesApi';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import genreOrCategoryReducer from '../features/currentGenreOrCategory';
 import pageReducer from '../features/currentPage';
+import userReducer from '../features/user';
 
 export const store = configureStore({
   reducer: {
     genreOrCategory: genreOrCategoryReducer,
     page: pageReducer,
+    user: userReducer,
     [moviesApi.reducerPath]: moviesApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
