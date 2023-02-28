@@ -23,7 +23,7 @@ const Movies = () => {
     genreIdOrCategoryName,
   });
   const imgPath = 'https://image.tmdb.org/t/p/w500';
-
+  const randomMovie = Math.floor(Math.random() * 20);
   return (
     <>
       {isLoading ? (
@@ -31,29 +31,25 @@ const Movies = () => {
       ) : (
         <>
           <div className="flex flex-col mb-5 p-10 mt-[50px]">
-            <div
-              className="h-[500px] w-full bg-no-repeat   mb-10 relative cursor-pointer rounded-md overflow-hidden  hidden md:block "
-              // style={{
-              //   backgroundImage: `url(${imgPath}/${movieData?.results[0].backdrop_path})`,
-              // }}
-            >
-              <Link to={`/movie/${movieData?.results[0].id}`}>
+            <div className="h-[500px] w-full bg-no-repeat   mb-10 relative cursor-pointer rounded-md overflow-hidden  hidden md:block ">
+              <Link to={`/movie/${movieData?.results[randomMovie].id}`}>
                 <img
                   className="w-full h-full object-cover  brightness-50 "
                   src={
-                    movieData?.results[0].backdrop_path
-                      ? `${imgPath}/${movieData?.results[0]?.backdrop_path}`
-                      : `${imgPath}/${movieData?.results[0]?.poster_path}`
+                    movieData?.results[randomMovie].backdrop_path
+                      ? `${imgPath}/${movieData?.results[randomMovie]?.backdrop_path}`
+                      : `${imgPath}/${movieData?.results[randomMovie]?.poster_path}`
                   }
-                  alt={movieData?.results[0]?.title}
+                  alt={movieData?.results[randomMovie]?.title}
                 />
               </Link>
               <div className="absolute bottom-0 left-5 p-5 text-white w-2/3  ">
                 <h2 className="text-xl leading-relaxed tracking-wider">
-                  {movieData?.results[0]?.title}
+                  {movieData?.results[randomMovie]?.title}
                 </h2>
                 <p className="text-base tracking-wide">
-                  {movieData?.results[0]?.overview.substring(0, 150)}...
+                  {movieData?.results[randomMovie]?.overview.substring(0, 150)}
+                  ...
                 </p>
               </div>
             </div>

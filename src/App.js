@@ -18,6 +18,7 @@ import { useContext, useEffect } from 'react';
 import { auth } from './firebase';
 import { login, logout } from './features/user';
 import SignUp from './components/SignUp/SignUp';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 function App() {
   const dispatch = useDispatch();
   const { open } = useContext(isOpenContext);
@@ -58,7 +59,7 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/my-movies" element={<MyMovies />} />
+        <Route path="/my-movies" element={<PrivateRoute><MyMovies /></PrivateRoute>} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/movie/:id" element={<MovieDetails />} />
