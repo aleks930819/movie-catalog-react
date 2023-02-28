@@ -4,6 +4,7 @@ import { useOnHoverOutside } from '../../hooks/useHoverOutside';
 import { useGetGenresQuery } from '../../store';
 import { useDispatch } from 'react-redux';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import { Link } from 'react-router-dom';
 
 const GenresMenu = () => {
   const [genresMenu, setGenresMenu] = useState(false);
@@ -34,9 +35,11 @@ const GenresMenu = () => {
       {genresMenu && (
         <ul className="flex flex-col gap-2 absolute top-[20px] bg-cyan-900 w-40 pt-5 z-100 text-center text-base p-5">
           {genres?.genres?.map(({ name, id }) => (
-            <li key={id} onClick={() => dispatch(selectGenreOrCategory(id))}>
-              {name}
-            </li>
+            <Link to='/'>
+              <li key={id} onClick={() => dispatch(selectGenreOrCategory(id))}>
+                {name}
+              </li>
+            </Link>
           ))}
         </ul>
       )}

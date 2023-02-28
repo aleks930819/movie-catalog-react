@@ -163,7 +163,7 @@ const MovieDetails = () => {
         <Spinner />
       ) : (
         <>
-          <div className="flex flex-col md:grid md:grid-cols-2 md:w-3/5 shadow-2xl justify-center items-center  content-center mx-auto mt-10 mb-10 w-5/6 pb-5 rounded-3xl overflow-hidden ">
+          <div className="flex flex-col md:grid md:grid-cols-2 md:w-3/5 shadow-2xl justify-center items-center  content-center mx-auto mb-10 w-5/6 pb-5 rounded-3xl overflow-hidden mt-[100px]">
             <div className="w-full row-span-full ">
               <img
                 className="w-full"

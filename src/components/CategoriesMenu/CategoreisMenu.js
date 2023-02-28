@@ -3,6 +3,7 @@ import { MdClose, MdArrowDropDown, MdArrowDropUp } from 'react-icons/md';
 import { useOnHoverOutside } from '../../hooks/useHoverOutside';
 import { useDispatch } from 'react-redux';
 import { selectGenreOrCategory } from '../../features/currentGenreOrCategory';
+import { Link } from 'react-router-dom';
 
 const CategoreisMenu = () => {
   const [categoriesMenu, setCategoriesMenu] = useState(false);
@@ -47,12 +48,14 @@ const CategoreisMenu = () => {
       {categoriesMenu && (
         <ul className="flex flex-col gap-2 absolute top-[20px] bg-cyan-900 w-40 pt-5 z-100 text-center text-base p-5">
           {categories?.map(({ label, value }) => (
-            <li
-              key={label}
-              onClick={() => dispatch(selectGenreOrCategory(value))}
-            >
-              {label}
-            </li>
+            <Link to="/">
+              <li
+                key={label}
+                onClick={() => dispatch(selectGenreOrCategory(value))}
+              >
+                {label}
+              </li>
+            </Link>
           ))}
         </ul>
       )}

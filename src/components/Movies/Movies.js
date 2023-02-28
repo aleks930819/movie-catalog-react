@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useGetMoviesQuery } from '../../store';
-import ScrollToTop from '../../utils/scrollToTop';
 import Pagination from '../Pagination/Pagination';
 import Spinner from '../Spinner/Spinner';
 import MovieCard from './MovieCard';
@@ -31,7 +30,7 @@ const Movies = () => {
         <Spinner />
       ) : (
         <>
-          <div className="flex flex-col mb-5 p-10 z-[1]">
+          <div className="flex flex-col mb-5 p-10 mt-[50px]">
             <div
               className="h-[500px] w-full bg-no-repeat   mb-10 relative cursor-pointer rounded-md overflow-hidden  hidden md:block "
               // style={{
@@ -40,7 +39,7 @@ const Movies = () => {
             >
               <Link to={`/movie/${movieData?.results[0].id}`}>
                 <img
-                  className="w-full h-full object-cover  brightness-50"
+                  className="w-full h-full object-cover  brightness-50 "
                   src={
                     movieData?.results[0].backdrop_path
                       ? `${imgPath}/${movieData?.results[0]?.backdrop_path}`

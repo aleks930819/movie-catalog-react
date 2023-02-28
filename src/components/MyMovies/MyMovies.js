@@ -6,9 +6,9 @@ const MyMovies = () => {
   const favoriteMovies = useSelector(selectFavorites);
 
   return (
-    <div className="flex justify-center items-center flex-col mx-auto mt-10 text-center">
-      <div>
-        <h2 className="text-2xl">
+    <div className="flex justify-center items-center flex-col mx-auto mt-[100px] text-center">
+      <div className='pb-5'>
+        <h2 className="text-2xl mb-[-50px]">
           {favoriteMovies.length === 0
             ? 'You have no favorite movies'
             : 'Favorites: '}
@@ -17,7 +17,7 @@ const MyMovies = () => {
       </div>
 
       <div>
-        <h2 className="text-2xl">
+        <h2 className="text-2xl mb-[-50px]">
           {watchList.length === 0
             ? 'You have no movies in your watchlist'
             : 'Watchlist: '}
