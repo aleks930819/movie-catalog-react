@@ -22,7 +22,7 @@ const Actors = () => {
         <ErrorMessage />
       ) : (
         <>
-          <div className="grid grid-cols-2 text-xs lg:text-sm p-5 gap-5 justify-center text-center text-md mt-10  mb-10 items-center content-center w-auto mx-auto md:w-3/6 shadow-2xl h">
+          <div className="grid grid-cols-2 text-xs lg:text-sm p-5 gap-5 justify-center text-center text-md  mb-10 items-center content-center w-auto mx-auto md:w-3/6 shadow-2xl mt-[100px]">
             <div className="overflow-hidden rounded-2xl  h-full   md:w-full">
               <img
                 className="object-cover w-full h-full"
