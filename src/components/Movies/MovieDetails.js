@@ -17,19 +17,42 @@ import { BiWorld } from 'react-icons/bi';
 
 import Button from '../Button/Button';
 import Trailer from '../Trailer/Trailer';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
 import Spinner from '../Spinner/Spinner';
-import addToLocalStorage from '../../utils/addToLocalStorage';
-import removeFromLocalStorage from '../../utils/removeFromLocalStorage';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cast from '../Cast/Cast';
-import useInFavoriteOrInWatchList from '../../hooks/useInFavoriteOrInWatchList';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectUser, set_favorites, set_watchlist } from '../../features/user';
+
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../../firebase';
 
 const MovieDetails = () => {
   const { id } = useParams();
+  const user = useSelector(selectUser);
+  const [watchlist, setWatchlist] = useState([]);
+  const [favorites, setFavorites] = useState([]);
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const userRef = doc(db, 'users', user?.uid);
+        const userDoc = await getDoc(userRef);
+
+        if (userDoc.exists()) {
+          setWatchlist(userDoc?.data()?.watchlist);
+          setFavorites(userDoc?.data()?.favorites);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getUserData();
+  }, [user?.uid]);
+
   const {
     data: movieDetails,
     error,
@@ -45,6 +68,7 @@ const MovieDetails = () => {
 
   const navigate = useNavigate();
   const [isTrailerOpen, setIsTrailerOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const openTrailerHandler = () => {
     setIsTrailerOpen(true);
@@ -54,19 +78,77 @@ const MovieDetails = () => {
     setIsTrailerOpen(false);
   };
 
-  const {
-    isInFavorited,
-    isInWatchedList,
-    setIsInFavorited,
-    setIsInWatchedList,
-  } = useInFavoriteOrInWatchList(movieDetails);
+  let isInWatchList = watchlist.some((item) => item?.id === movieDetails?.id);
+  let isInFavorites = favorites.some((item) => item?.id === movieDetails?.id);
 
-  const watchListNotify = () => {
-    toast(isInWatchedList ? 'Removed from watch list' : 'Added to watch list');
+  const addToWatchListHandler = async () => {
+    const data = [];
+
+    const arr = data.concat(movieDetails);
+
+    if (!isInWatchList) {
+      try {
+        updateDoc(doc(db, 'users', user.uid), {
+          watchlist: [...watchlist, ...arr],
+        });
+        setWatchlist([...watchlist, ...arr]);
+        dispatch(set_watchlist([...watchlist, ...arr]));
+        toast.success('Added to watch list');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (isInWatchList) {
+      try {
+        const newWatchlist = watchlist.filter(
+          (item) => item.id !== movieDetails.id
+        );
+        updateDoc(doc(db, 'users', user.uid), {
+          watchlist: newWatchlist,
+        });
+        setWatchlist(newWatchlist);
+        dispatch(set_watchlist(newWatchlist));
+        toast.success('Removed from watch list');
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
-  const favoriteNotify = () => {
-    toast(isInFavorited ? 'Removed from favorites' : 'Added to favorites list');
+  const addToFavoritesHandler = async () => {
+    const data = [];
+
+    const arr = data.concat(movieDetails);
+
+    if (!isInFavorites) {
+      try {
+        updateDoc(doc(db, 'users', user.uid), {
+          favorites: [...favorites, ...arr],
+        });
+        setWatchlist([...favorites, ...arr]);
+        dispatch(set_favorites([...favorites, ...arr]));
+        toast.success('Added to favorites');
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (isInFavorites) {
+      try {
+        const newFavoritesList = watchlist.filter(
+          (item) => item.id !== movieDetails.id
+        );
+        updateDoc(doc(db, 'users', user.uid), {
+          favorites: newFavoritesList,
+        });
+        setWatchlist(newFavoritesList);
+        dispatch(set_favorites(newFavoritesList));
+        toast.success('Removed from favorites');
+      } catch (error) {
+        console.log(error);
+      }
+    }
   };
 
   const dateFormat = new Date(movieDetails?.release_date)
@@ -133,15 +215,11 @@ const MovieDetails = () => {
                 <Button
                   outline
                   onClick={() => {
-                    isInWatchedList
-                      ? removeFromLocalStorage('watchlist', movieDetails?.id)
-                      : addToLocalStorage('watchlist', [movieDetails]);
-                    setIsInWatchedList(!isInWatchedList);
-                    watchListNotify();
+                    addToWatchListHandler();
                   }}
                 >
                   Watchlist
-                  {isInWatchedList ? (
+                  {isInWatchList ? (
                     <FaMinus className="ml-5 text-cyan-900" />
                   ) : (
                     <FaPlus className="ml-5 text-cyan-900" />
@@ -151,15 +229,11 @@ const MovieDetails = () => {
                 <Button
                   outline
                   onClick={() => {
-                    isInFavorited
-                      ? removeFromLocalStorage('favorite', movieDetails?.id)
-                      : addToLocalStorage('favorite', [movieDetails]);
-                    setIsInFavorited(!isInFavorited);
-                    favoriteNotify();
+                    addToFavoritesHandler();
                   }}
                 >
                   Favorite
-                  {isInFavorited ? (
+                  {isInFavorites ? (
                     <FaHeart className="ml-5 text-purple-700" />
                   ) : (
                     <FaRegHeart className="ml-5 text-cyan-900" />

@@ -1,9 +1,14 @@
 import { useEffect, useState } from 'react';
 import getItemFromLocalStorage from '../utils/getItemFromLocalStorage';
+import { useSelector } from 'react-redux';
+import { selectFavorites, selectWatchlist } from '../features/user';
 
 const useInFavoriteOrInWatchList = (movieDetails) => {
   const [isInFavorited, setIsInFavorited] = useState(false);
   const [isInWatchedList, setIsInWatchedList] = useState(false);
+  const watchlist = useSelector(selectWatchlist);
+  const favorites = useSelector(selectFavorites);
+
 
   useEffect(() => {
     const favorites = getItemFromLocalStorage('favorite');

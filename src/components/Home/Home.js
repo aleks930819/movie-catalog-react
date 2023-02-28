@@ -8,8 +8,7 @@ const Home = () => {
 
   return (
     <div className="flex flex-col md:flex-row">
-      {open ? <Sidebar /> : ''}
-
+      <Sidebar />
       <Movies />
     </div>
   );

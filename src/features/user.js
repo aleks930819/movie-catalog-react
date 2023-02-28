@@ -14,6 +14,8 @@ export const userSlice = createSlice({
     },
     logout: (state) => {
       state.user = null;
+      state.watchlist = [];
+      state.favorites = [];
     },
     set_watchlist: (state, action) => {
       state.watchlist = action.payload;
@@ -27,4 +29,6 @@ export const userSlice = createSlice({
 export const { login, logout, set_favorites, set_watchlist } =
   userSlice.actions;
 export const selectUser = (state) => state.user.user;
+export const selectWatchlist = (state) => state.user.watchlist;
+export const selectFavorites = (state) => state.user.favorites;
 export default userSlice.reducer;

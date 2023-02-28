@@ -13,7 +13,6 @@ const useGetUserData = ({ userID }) => {
         const userDoc = await getDoc(userRef);
 
         if (userDoc.exists()) {
-          console.log('yes');
           setWatchList(userDoc.data().watchlist);
           setFavorites(userDoc.data().favorites);
         }
@@ -21,10 +20,9 @@ const useGetUserData = ({ userID }) => {
         console.log(error);
       }
     };
-    if (userID) {
-      getUserData();
-    }
+    getUserData();
   }, [userID]);
+
 
   return { watchList, favorites };
 };
