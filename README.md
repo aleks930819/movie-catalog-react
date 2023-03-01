@@ -1,5 +1,5 @@
 
-The app is using  The Movie Database (TMDB) API
+The application works with the Movie Database API (TMDB).
 
 Link: https://earnest-wisp-9f206b.netlify.app/
 
