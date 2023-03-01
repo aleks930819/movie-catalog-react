@@ -15,6 +15,7 @@ Technologies used:
 * React Icons
 * Firebase
 * React Responsive
+* React-Toastify
 
 
 ## Functionality
