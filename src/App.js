@@ -7,13 +7,11 @@ import Home from './components/Home/Home';
 import MovieDetails from './components/Movies/MovieDetails';
 import NavBar from './components/Navbar/NavBar';
 import ScrollToTop from './utils/scrollToTop';
-import { IsOpenProvider, isOpenContext } from './contexts/isOpenContext';
 import MyMovies from './components/MyMovies/MyMovies';
 import PageNotFound from './components/PageNotFound/PageNotFound';
-import Sidebar from './components/Sidebar/Sidebar';
 import SignIn from './components/SignIn/SignIn';
 import { useDispatch } from 'react-redux';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import { auth } from './firebase';
 import { login, logout } from './features/user';
@@ -21,7 +19,6 @@ import SignUp from './components/SignUp/SignUp';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 function App() {
   const dispatch = useDispatch();
-  const { open } = useContext(isOpenContext);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((userAuth) => {
@@ -42,7 +39,6 @@ function App() {
 
   return (
     <>
-
       <ToastContainer
         position="bottom-center"
         autoClose={2000}
@@ -59,7 +55,14 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/my-movies" element={<PrivateRoute><MyMovies /></PrivateRoute>} />
+        <Route
+          path="/my-movies"
+          element={
+            <PrivateRoute>
+              <MyMovies />
+            </PrivateRoute>
+          }
+        />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/movie/:id" element={<MovieDetails />} />

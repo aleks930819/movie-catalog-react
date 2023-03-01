@@ -1,10 +1,8 @@
-import { Link, useNavigate, useParams } from 'react-router-dom';
-import { FaArrowLeft } from 'react-icons/fa';
+import { useNavigate, useParams } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
 
-import {
-  useGetMoviesDetailsQuery,
-  useGetRecommendationsQuery,
-} from '../../store';
+import { FaArrowLeft } from 'react-icons/fa';
+import { BiWorld } from 'react-icons/bi';
 import {
   FaStar,
   FaHeart,
@@ -13,21 +11,26 @@ import {
   FaPlus,
   FaYoutube,
 } from 'react-icons/fa';
-import { BiWorld } from 'react-icons/bi';
+
+import { toast } from 'react-toastify';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+
+import {
+  useGetMoviesDetailsQuery,
+  useGetRecommendationsQuery,
+} from '../../store';
 
 import Button from '../Button/Button';
 import Trailer from '../Trailer/Trailer';
 import { useEffect, useState } from 'react';
 import MovieCard from './MovieCard';
 import Spinner from '../Spinner/Spinner';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Cast from '../Cast/Cast';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectUser, set_favorites, set_watchlist } from '../../features/user';
 
-import { doc, getDoc, updateDoc } from 'firebase/firestore';
 import { db } from '../../firebase';
 
 const MovieDetails = () => {
