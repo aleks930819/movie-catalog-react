@@ -18,8 +18,8 @@ const MovieCard = ({ data }) => {
         {data?.map(
           (movie) =>
             checkIsThereImage(movie) && (
-              <div key={movie.id} id={movie.id}>
-                <Link to={`/movie/${movie.id}`}>
+              <div key={movie?.id} id={movie?.id}>
+                <Link to={`/movie/${movie?.id}`}>
                   <img
                     className="w-full shadow-2xl z-10 sm:w-full   rounded-md  cursor-pointer lg:hover:scale-110 lg:hover:grayscale lg:hover:z-40 transition ease-in-out delay-250"
                     src={

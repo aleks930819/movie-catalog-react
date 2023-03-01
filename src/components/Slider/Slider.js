@@ -23,7 +23,7 @@ const Slider = ({ data, title }) => {
   };
 
   return (
-    <div className="mt-[100px] relative mb-10">
+    <div className="mt-[100px] relative mb-10 select-none">
       <h2 className="text-xl  pb-5 pl-5">{title}</h2>
       <IoMdArrowDropleft
         className="text-3xl text-white cursor-pointer
@@ -44,11 +44,11 @@ const Slider = ({ data, title }) => {
         ref={dataRef}
       >
         {data.map((movie) => (
-          <Link to={`/movie/${movie?.id}`} className="ml-5" key={movie?.id}>
+          <Link to={`/movie/${movie?.id}`} className="ml-5  " key={movie?.id}>
             <img
               src={`${imgPath}/${movie?.poster_path}`}
               alt={movie?.title}
-              className="w-[220px] h-[250px] object-center rounded-md  z-0"
+              className="w-[220px] h-[250px] object-center rounded-md  z-0  lg:hover:scale-110 transition-all duration-500 ease-in-out"
             />
           </Link>
         ))}

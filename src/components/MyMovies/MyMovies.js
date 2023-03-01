@@ -1,11 +1,3 @@
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-import '../../index.css';
-import FavortiesSlide from '../FavoritesSlide/FavortiesSlide';
-import WatchlistSlide from '../WatchlistSlide/WatchlistSlide';
-
 import { useSelector } from 'react-redux';
 
 import Slider from '../Slider/Slider';
