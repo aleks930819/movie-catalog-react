@@ -1,7 +1,7 @@
 
 The application works with the Movie Database API (TMDB).
 
-Link: https://earnest-wisp-9f206b.netlify.app/
+Link: https://cheerful-praline-f8a4f2.netlify.app/
 
 
 https://user-images.githubusercontent.com/107752460/222092596-071614c4-62ee-4667-86e8-7037af670bc6.mp4
