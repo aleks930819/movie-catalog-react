@@ -4,12 +4,14 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import genreOrCategoryReducer from '../features/currentGenreOrCategory';
 import pageReducer from '../features/currentPage';
 import userReducer from '../features/user';
+import watchlistAndFavoritesReducer from '../features/watchlistAndFavorites';
 
 export const store = configureStore({
   reducer: {
     genreOrCategory: genreOrCategoryReducer,
     page: pageReducer,
     user: userReducer,
+    watchlistAndFavorites: watchlistAndFavoritesReducer,
     [moviesApi.reducerPath]: moviesApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {

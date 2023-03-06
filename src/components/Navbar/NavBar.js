@@ -9,15 +9,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import {
   logout,
   selectUser,
-  set_favorites,
-  set_watchlist,
 } from '../../features/user';
+
 
 import RightSide from './RightSide';
 import LeftSide from './LeftSide';
 import NavbarButton from './NavbarButton';
 
 import useGetUserData from '../../hooks/useGetUserData';
+import { set_favorites, set_watchlist } from '../../features/watchlistAndFavorites';
 
 const NavBar = () => {
   const user = useSelector(selectUser);
@@ -28,6 +28,8 @@ const NavBar = () => {
 
   const logoutHandler = () => {
     dispatch(logout());
+    dispatch(set_favorites([]));
+    dispatch(set_watchlist([]));
   };
 
   const { watchList, favorites } = useGetUserData({

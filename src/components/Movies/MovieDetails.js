@@ -11,8 +11,7 @@ import MovieCard from './MovieCard';
 import Spinner from '../Spinner/Spinner';
 import Cast from '../Cast/Cast';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
-
-import MovieDetailsActions from './MovieDetailsActions';
+import Actions from './Actions';
 
 const MovieDetails = () => {
   const { id } = useParams();
@@ -61,7 +60,7 @@ const MovieDetails = () => {
               />
             </div>
 
-            <MovieDetailsActions
+            <Actions
               movieDetails={movieDetails}
               openTrailerHandler={openTrailerHandler}
               dateFormat={dateFormat}
